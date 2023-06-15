@@ -7,6 +7,15 @@ module.exports = merge(common, {
   devServer: {
     port: 3000,
     hot: true,
-    // contentBase: path.resolve(__dirname, '../dist')
+    proxy: { // 代理
+      "/testapi": {
+        target:
+        "https://www.easy-mock.com/mock/5dff0acd5b188e66c6e07329/react-template",
+         changeOrigin: true,
+         secure: false,
+         pathRewrite: { "^/testapi": "" }
+      }
+    },
+    historyApiFallback: true
   }
 })

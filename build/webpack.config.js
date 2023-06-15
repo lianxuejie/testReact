@@ -1,12 +1,14 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const srcDir = path.join(__dirname, '../src');
 module.exports =  {
   entry: {
     app: './src/index.js'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].bundle.js'
+    filename: '[name].bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -22,12 +24,25 @@ module.exports =  {
         },
       },
       {
+        test: /\.less$/,
+        use: [
+          'css-loader',
+          'postcss-loader',
+          'less-loader'
+        ]
+      },
+      {
         test: /\.css$/,
         use: ['css-loader']
       }
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './src/index.html' })
+    new HtmlWebpackPlugin({ template: `${srcDir}/index.html` })
   ],
+  resolve: {
+    alias: {
+      '@': path.join(__dirname, srcDir)
+    }
+  }
 }
