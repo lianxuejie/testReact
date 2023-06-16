@@ -1,6 +1,9 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const srcDir = path.join(__dirname, '../src');
+const devMode = process.env.NODE_ENV !== 'production';
+console.log(process.env.NODE_ENV)
 module.exports =  {
   entry: {
     app: './src/index.js'
@@ -26,15 +29,36 @@ module.exports =  {
       {
         test: /\.less$/,
         use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
           'less-loader'
-        ]
+        ],
       },
       {
         test: /\.css$/,
-        use: ['css-loader']
-      }
+        use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+        ],
+      },
+      // {
+      //   test: /\.module\.less$/,
+      //   use: [
+      //     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: 'css-loader',
+      //       importLoaders: 1,
+      //       sourceMap: !devMode,
+      //       modules: {
+      //         localIdentName: '[local]_[hash:base64:5]'
+      //       },
+      //     },
+      //     'postcss-loader',
+      //     'less-loader'
+      //   ],
+      // },
     ]
   },
   plugins: [
