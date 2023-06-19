@@ -1,0 +1,9 @@
+/* 局部作用域 */
+.title {
+  color: red;
+}
+
+/* 全局作用域 */
+:global(.title) {
+  color: green;
+}
