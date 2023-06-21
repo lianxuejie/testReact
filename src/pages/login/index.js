@@ -1,7 +1,7 @@
 import React from 'react'
 
-import './style.less'
-import testStyle from './testStyle.module.css'
+import './style.css'
+import testStyle from './testStyle.module.less'
 
 const LoginPage = () => {
   return (
