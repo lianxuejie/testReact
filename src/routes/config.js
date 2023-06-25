@@ -12,18 +12,18 @@ const config = [
     element: <BlankLayout />,
     children: [
       {
-        path:'/login',
-        element: <LoginIndex />
-      },
-      {
-        path:'/a', 
+        path:'/', 
         element: <BasicLayout />,
         children: [
           {
-            path: 'b', // 这里的path，写为'/b'，也可以  /加不加都行
+            path: 'index', // 这里的path，写为'/b'，也可以  /加不加都行
             element: <Suspense fallback={<>loading</>}><Index /></Suspense>
           }
         ]
+      },
+      {
+        path:'/login',
+        element: <LoginIndex />
       }
     ]
   }

@@ -15,17 +15,19 @@ module.exports =  {
   },
   module: {
     rules: [
-      {
-        test: /\.js$|jsx/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: ['@babel/plugin-proposal-class-properties']
-          }
-        },
-      },
+      // {
+      //   test: /\.js$|jsx/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //     options: {
+      //       presets: ['@babel/preset-env', '@babel/preset-react'],
+      //       plugins: ['@babel/plugin-proposal-class-properties']
+      //     }
+      //   },
+      // },
+      { test: /\.(js|jsx)$/, loader: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.(ts|tsx)$/, loader: 'ts-loader', exclude: /node_modules/ },
       {
         test: /\.less$/,
         use: [
@@ -58,6 +60,7 @@ module.exports =  {
     new MiniCssExtractPlugin()
   ],
   resolve: {
+    extensions: ['.tsx', '.ts', '.js', 'jsx'],
     alias: {
       '@': path.join(__dirname, srcDir)
     }

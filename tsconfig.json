@@ -30,7 +30,7 @@
     // 是否将没有 import/export 的文件视为旧（全局而非模块化）脚本文件
     "isolatedModules": true,
     // 编译时不生成任何文件（只进行类型检查）
-    "noEmit": true,
+    "noEmit": false,
     // 指定将 JSX 编译成什么形式
     "jsx": "react-jsx"
   },
