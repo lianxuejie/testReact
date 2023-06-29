@@ -1,19 +1,24 @@
 const { merge } = require('webpack-merge')
 const common = require('./webpack.config.js')
 const path = require('path')
+const webpack = require('webpack');
 
 module.exports = merge(common, {
   mode: 'development',
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.BASE_URL': '"/dev-api"'
+    })
+  ],
   devServer: {
     port: 3000,
     hot: true,
     proxy: { // 代理
-      "/testapi": {
-        target:
-        "https://www.easy-mock.com/mock/5dff0acd5b188e66c6e07329/react-template",
-         changeOrigin: true,
-         secure: false,
-         pathRewrite: { "^/testapi": "" }
+      [process.env.BASE_URL]: {
+        target: "https://api.magir.ai/api",
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: { ['^' + process.env.BASE_URL]: "" }
       }
     },
     historyApiFallback: true

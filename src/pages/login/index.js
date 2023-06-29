@@ -3,6 +3,8 @@ import React from 'react'
 import './style.css'
 import testStyle from './testStyle.module.less'
 
+// google login
+// https://juejin.cn/post/7130144051914866724
 const LoginPage = () => {
   return (
     <div>
